@@ -6,7 +6,7 @@ import { filterByTreatment } from '../../app/views/staff/utils';
 import { axiosInstance } from '../../config/axiosInstance';
 import { queryKeys } from '../constants';
 
-async function getStaff(): Promise<Staff[]> {
+async function getStaffAPI(): Promise<Staff[]> {
   const { data } = await axiosInstance.get('/staff');
   return data;
 }
@@ -26,7 +26,7 @@ export function useStaff(): UseStaff {
   );
 
   const fallback = [];
-  const { data: staff = fallback } = useQuery(queryKeys.staff, getStaff, {
+  const { data: staff = fallback } = useQuery(queryKeys.staff, getStaffAPI, {
     select: filter !== 'all' ? selectFn : undefined,
   });
 

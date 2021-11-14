@@ -6,7 +6,9 @@ import { axiosInstance } from '../../config/axiosInstance';
 import { queryKeys } from '../constants';
 
 // for when server call is needed
-async function removeAppointmentUser(appointment: Appointment): Promise<void> {
+async function removeAppointmentUserAPI(
+  appointment: Appointment,
+): Promise<void> {
   const patchData = [{ op: 'remove', path: '/userId' }];
   await axiosInstance.patch(`/appointment/${appointment.id}`, {
     data: patchData,
@@ -23,7 +25,7 @@ export function useCancelAppointment(): UseMutateFunction<
   const queryClient = useQueryClient();
   const toast = useCustomToast();
 
-  const { mutate } = useMutation(removeAppointmentUser, {
+  const { mutate } = useMutation(removeAppointmentUserAPI, {
     onSuccess: () => {
       queryClient.invalidateQueries([queryKeys.appointments]);
       toast({

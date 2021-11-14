@@ -8,7 +8,7 @@ import { queryKeys } from '../constants';
 import { useUser } from './useUser';
 
 // for when we need a server function
-async function patchUserOnServer(
+async function patchUserAPI(
   newData: User | null,
   originalData: User | null,
 ): Promise<User | null> {
@@ -38,7 +38,7 @@ export function usePatchUser(): UseMutateFunction<
   const queryClient = useQueryClient();
 
   const { mutate: patchUser } = useMutation(
-    (newUserData: User) => patchUserOnServer(newUserData, user),
+    (newUserData: User) => patchUserAPI(newUserData, user),
     {
       // onMutate returns context that is passed to onError
       onMutate: async (newData: User | null) => {

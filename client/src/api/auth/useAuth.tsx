@@ -16,7 +16,7 @@ interface AuthServerCallType {
   updateUser: (newUser: User) => void;
 }
 
-async function authServerCall({
+async function postAuthAPI({
   urlEndpoint,
   email,
   password,
@@ -66,7 +66,7 @@ async function signIn({
   toast,
   updateUser,
 }: SignInType): Promise<void> {
-  authServerCall({
+  postAuthAPI({
     urlEndpoint: '/signIn',
     email,
     password,
@@ -83,7 +83,7 @@ async function signUp({
   toast,
   updateUser,
 }: SignUpType): Promise<void> {
-  authServerCall({ urlEndpoint: '/user', email, password, toast, updateUser });
+  postAuthAPI({ urlEndpoint: '/user', email, password, toast, updateUser });
 }
 
 interface SignOutType {

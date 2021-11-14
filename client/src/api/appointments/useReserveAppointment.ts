@@ -6,7 +6,7 @@ import { axiosInstance } from '../../config/axiosInstance';
 import { queryKeys } from '../constants';
 import { useUser } from '../user/useUser';
 
-async function setAppointmentUser(
+async function patchAppointmentUserAPI(
   appointment: Appointment,
   userId: number | undefined,
 ): Promise<void> {
@@ -29,7 +29,8 @@ export function useReserveAppointment(): UseMutateFunction<
   const queryClient = useQueryClient();
 
   const { mutate } = useMutation(
-    (appointment: Appointment) => setAppointmentUser(appointment, user?.id),
+    (appointment: Appointment) =>
+      patchAppointmentUserAPI(appointment, user?.id),
     {
       onSuccess: () => {
         queryClient.invalidateQueries([queryKeys.appointments]);

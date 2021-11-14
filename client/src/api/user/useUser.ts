@@ -16,7 +16,7 @@ interface AxiosResponseWithCancel extends AxiosResponse {
 }
 
 // query function
-async function getUser(user: User | null): Promise<AxiosResponseWithCancel> {
+async function getUserAPI(user: User | null): Promise<AxiosResponseWithCancel> {
   const source = axios.CancelToken.source();
 
   if (!user) return null;
@@ -46,7 +46,7 @@ export function useUser(): UseUser {
   const queryClient = useQueryClient();
 
   // call useQuery to update user data from server
-  useQuery(queryKeys.user, () => getUser(user), {
+  useQuery(queryKeys.user, () => getUserAPI(user), {
     enabled: !!user,
     // updating onSuccess based on changes in React Query
     // see https://www.udemy.com/course/learn-react-query/learn/#questions/15581842/ for more details

@@ -6,7 +6,7 @@ import { queryKeys } from '../constants';
 import { useUser } from './useUser';
 
 // query function
-async function getUserAppointments(
+async function getUserAppointmentsAPI(
   user: User | null,
 ): Promise<Appointment[] | null> {
   if (!user) return null;
@@ -22,7 +22,7 @@ export function useUserAppointments(): Appointment[] {
   const fallback: Appointment[] = [];
   const { data: userAppointments = fallback } = useQuery(
     [queryKeys.appointments, queryKeys.user, user?.id],
-    () => getUserAppointments(user),
+    () => getUserAppointmentsAPI(user),
     {
       enabled: !!user,
     },

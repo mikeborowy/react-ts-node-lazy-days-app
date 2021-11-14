@@ -26,7 +26,7 @@ const commonOptions = {
 };
 
 // query function for useQuery call
-async function getAppointments(
+async function getAppointmentsAPI(
   year: string,
   month: string,
 ): Promise<AppointmentDateMap> {
@@ -91,7 +91,7 @@ export function useAppointments(): UseAppointments {
     const nextMonthYear = getNewMonthYear(monthYear, 1);
     queryClient.prefetchQuery(
       [queryKeys.appointments, nextMonthYear.year, nextMonthYear.month],
-      () => getAppointments(nextMonthYear.year, nextMonthYear.month),
+      () => getAppointmentsAPI(nextMonthYear.year, nextMonthYear.month),
       commonOptions,
     );
   }, [queryClient, monthYear]);
@@ -100,13 +100,13 @@ export function useAppointments(): UseAppointments {
   //    1. appointments is an AppointmentDateMap (object with days of month
   //       as properties, and arrays of appointments for that day as values)
   //
-  //    2. The getAppointments query function needs monthYear.year and
+  //    2. The getAppointmentsAPI query function needs monthYear.year and
   //       monthYear.month
   const fallback = {};
 
   const { data: appointments = fallback } = useQuery(
     [queryKeys.appointments, monthYear.year, monthYear.month],
-    () => getAppointments(monthYear.year, monthYear.month),
+    () => getAppointmentsAPI(monthYear.year, monthYear.month),
     {
       select: showAll ? undefined : selectFn,
       ...commonOptions,
