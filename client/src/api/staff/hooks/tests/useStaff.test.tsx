@@ -1,6 +1,6 @@
 import { act, renderHook } from '@testing-library/react-hooks';
 
-import { createWrapper } from '../../../utils/test';
+import { createWrapper } from '../../../../utils/test';
 import { useStaff } from '../useStaff';
 
 test('filter staff', async () => {

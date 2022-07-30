@@ -15,9 +15,9 @@ import { ImCancelCircle } from 'react-icons/im';
 import { Link } from 'react-router-dom';
 
 import type { Appointment } from '../../../../../shared/types';
-import { useCancelAppointment } from '../../../api/appointments/useCancelAppointment';
-import { useUser } from '../../../api/user/useUser';
-import { useUserAppointments } from '../../../api/user/useUserAppointments';
+import { useCancelAppointment } from '../../../api/appointments/hooks/useCancelAppointment';
+import { useUser } from '../../../api/user/hooks/useUser';
+import { useUserAppointments } from '../../../api/user/hooks/useUserAppointments';
 
 interface AppointmentsTableProps {
   userAppointments: Appointment[];

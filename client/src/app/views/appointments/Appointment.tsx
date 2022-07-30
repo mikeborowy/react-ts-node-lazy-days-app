@@ -7,7 +7,7 @@ import {
   User,
 } from '../../../../../shared/types';
 import { useReserveAppointment } from '../../../api/appointments/useReserveAppointment';
-import { useUser } from '../../../api/user/useUser';
+import { useUser } from '../../../api/user/hooks/useUser';
 import { appointmentInPast, getAppointmentColor } from './utils';
 
 // determine whether this appointment can be reserved / un-reserved by logged-in user

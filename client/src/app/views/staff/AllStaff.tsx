@@ -1,8 +1,8 @@
 import { Box, Heading, HStack, Radio, RadioGroup } from '@chakra-ui/react';
 import { ReactElement } from 'react';
 
-import { useStaff } from '../../../api/staff/useStaff';
-import { useTreatments } from '../../../api/treatments/useTreatments';
+import { useStaff } from '../../../api/staff/hooks/useStaff';
+import { useTreatments } from '../../../api/treatments/hooks/useTreatments';
 import { Staff } from './Staff';
 
 export function AllStaff(): ReactElement {

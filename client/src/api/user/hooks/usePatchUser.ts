@@ -1,31 +1,10 @@
-import jsonpatch from 'fast-json-patch';
 import { UseMutateFunction, useMutation, useQueryClient } from 'react-query';
 
-import type { User } from '../../../../shared/types';
-import { useCustomToast } from '../../app/common/hooks/useCustomToast';
-import { axiosInstance, getJWTHeader } from '../../config/axiosInstance';
-import { queryKeys } from '../constants';
+import type { User } from '../../../../../shared/types';
+import { useCustomToast } from '../../../app/common/hooks/useCustomToast';
+import { queryKeys } from '../../constants';
+import { patchUserAPI } from '../patchUserAPI';
 import { useUser } from './useUser';
-
-// for when we need a server function
-async function patchUserAPI(
-  newData: User | null,
-  originalData: User | null,
-): Promise<User | null> {
-  if (!newData || !originalData) return null;
-  // create a patch for the difference between newData and originalData
-  const patch = jsonpatch.compare(originalData, newData);
-
-  // send patched data to the server
-  const { data } = await axiosInstance.patch(
-    `/user/${originalData.id}`,
-    { patch },
-    {
-      headers: getJWTHeader(originalData),
-    },
-  );
-  return data.user;
-}
 
 export function usePatchUser(): UseMutateFunction<
   User,

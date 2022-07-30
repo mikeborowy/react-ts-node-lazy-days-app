@@ -3,8 +3,8 @@ import { ReactElement, ReactNode } from 'react';
 import { GiFlowerPot } from 'react-icons/gi';
 import { Link as RouterLink, useHistory } from 'react-router-dom';
 
-import { useAuth } from '../../../api/auth/useAuth';
-import { useUser } from '../../../api/user/useUser';
+import { useAuth } from '../../../api/auth/hooks/useAuth';
+import { useUser } from '../../../api/user/hooks/useUser';
 
 const Links = ['Treatments', 'Staff', 'Calendar'];
 
@@ -27,7 +27,7 @@ const NavLink = ({ to, children }: { to: string; children: ReactNode }) => (
 
 export function Navbar(): ReactElement {
   const { user } = useUser();
-  const { signOut } = useAuth();
+  const { signOutAPI } = useAuth();
   const history = useHistory();
 
   return (
@@ -49,7 +49,7 @@ export function Navbar(): ReactElement {
           {user ? (
             <>
               <NavLink to={`/user/${user.id}`}>{user.email}</NavLink>
-              <Button onClick={() => signOut()}>Sign out</Button>
+              <Button onClick={() => signOutAPI()}>Sign out</Button>
             </>
           ) : (
             <Button onClick={() => history.push('sign-in')}>Sign in</Button>

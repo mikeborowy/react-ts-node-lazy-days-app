@@ -1,39 +1,14 @@
-import axios, { AxiosResponse } from 'axios';
 import { useState } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
 
-import type { User } from '../../../../shared/types';
-import { axiosInstance, getJWTHeader } from '../../config/axiosInstance';
+import type { User } from '../../../../../shared/types';
 import {
   clearStoredUser,
   getStoredUser,
   setStoredUser,
-} from '../../utils/user-storage';
-import { queryKeys } from '../constants';
-
-interface AxiosResponseWithCancel extends AxiosResponse {
-  cancel: () => void;
-}
-
-// query function
-async function getUserAPI(user: User | null): Promise<AxiosResponseWithCancel> {
-  const source = axios.CancelToken.source();
-
-  if (!user) return null;
-  const axiosResponse: AxiosResponseWithCancel = await axiosInstance.get(
-    `/user/${user.id}`,
-    {
-      headers: getJWTHeader(user),
-      cancelToken: source.token,
-    },
-  );
-
-  axiosResponse.cancel = () => {
-    source.cancel();
-  };
-
-  return axiosResponse;
-}
+} from '../../../utils/user-storage';
+import { queryKeys } from '../../constants';
+import { getUserAPI } from '../getUserAPI';
 
 interface UseUser {
   user: User | null;

@@ -13,8 +13,8 @@ import { Field, Form, Formik } from 'formik';
 import { ReactElement } from 'react';
 import { Redirect } from 'react-router-dom';
 
-import { usePatchUser } from '../../../api/user/usePatchUser';
-import { useUser } from '../../../api/user/useUser';
+import { usePatchUser } from '../../../api/user/hooks/usePatchUser';
+import { useUser } from '../../../api/user/hooks/useUser';
 import { UserAppointments } from './UserAppointments';
 
 export function UserProfile(): ReactElement {

@@ -1,15 +1,10 @@
 import { Dispatch, SetStateAction, useCallback, useState } from 'react';
 import { useQuery } from 'react-query';
 
-import type { Staff } from '../../../../shared/types';
-import { filterByTreatment } from '../../app/views/staff/utils';
-import { axiosInstance } from '../../config/axiosInstance';
-import { queryKeys } from '../constants';
-
-async function getStaffAPI(): Promise<Staff[]> {
-  const { data } = await axiosInstance.get('/staff');
-  return data;
-}
+import type { Staff } from '../../../../../shared/types';
+import { filterByTreatment } from '../../../app/helpers/filterByTreatment';
+import { queryKeys } from '../../constants';
+import { getStaffAPI } from '../getStaffAPI';
 
 interface UseStaff {
   staff: Staff[];

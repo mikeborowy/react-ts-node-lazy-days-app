@@ -11,7 +11,7 @@ import dayjs from 'dayjs';
 import { ReactElement } from 'react';
 import { TiArrowLeftThick, TiArrowRightThick } from 'react-icons/ti';
 
-import { useAppointments } from '../../../api/appointments/useAppointments';
+import { useAppointments } from '../../../api/appointments/hooks/useAppointments';
 import { UserAppointments } from '../user/UserAppointments';
 import { DateBox } from './DateBox';
 

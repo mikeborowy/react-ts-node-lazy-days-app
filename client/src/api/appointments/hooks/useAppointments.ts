@@ -12,27 +12,18 @@ import {
   getMonthYearDetails,
   getNewMonthYear,
   MonthYear,
-} from '../../app/views/appointments/hooks/monthYear';
-import { AppointmentDateMap } from '../../app/views/appointments/types';
-import { getAvailableAppointments } from '../../app/views/appointments/utils';
-import { axiosInstance } from '../../config/axiosInstance';
-import { queryKeys } from '../constants';
-import { useUser } from '../user/useUser';
+} from '../../../app/helpers/monthYear';
+import { AppointmentDateMap } from '../../../app/views/appointments/types';
+import { getAvailableAppointments } from '../../../app/views/appointments/utils';
+import { queryKeys } from '../../constants';
+import { useUser } from '../../user/hooks/useUser';
+import { getAppointmentsAPI } from '../getAppointmentsAPI';
 
 // common options for both useQuery and prefetchQuery
 const commonOptions = {
   staleTime: 0,
   cacheTime: 300000, // 5 minutes
 };
-
-// query function for useQuery call
-async function getAppointmentsAPI(
-  year: string,
-  month: string,
-): Promise<AppointmentDateMap> {
-  const { data } = await axiosInstance.get(`/appointments/${year}/${month}`);
-  return data;
-}
 
 // types for hook return object
 interface UseAppointments {

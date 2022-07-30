@@ -13,8 +13,8 @@ import {
 import { ReactElement, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 
-import { useAuth } from '../../../api/auth/useAuth';
-import { useUser } from '../../../api/user/useUser';
+import { useAuth } from '../../../api/auth/hooks/useAuth';
+import { useUser } from '../../../api/user/hooks/useUser';
 
 // eslint-disable-next-line max-lines-per-function
 export function Signin(): ReactElement {
@@ -74,14 +74,14 @@ export function Signin(): ReactElement {
                   variant="outline"
                   type="submit"
                   isDisabled={!email || !password}
-                  onClick={() => auth.signUp(email, password)}
+                  onClick={() => auth.signUpAPI(email, password)}
                 >
                   Sign up
                 </Button>
                 <Button
                   type="submit"
                   isDisabled={!email || !password}
-                  onClick={() => auth.signIn(email, password)}
+                  onClick={() => auth.signInAPI(email, password)}
                 >
                   Sign in
                 </Button>
